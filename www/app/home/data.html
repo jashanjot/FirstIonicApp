@@ -1,0 +1,33 @@
+<ion-view ng-controller="dataCtrl">
+  <ion-content class="has-header">
+
+    <form method="post" ng-show="toShow" name="theForm" ng-submit="submit()">
+        <label class="item item-input">
+          <input type="text" name="username" ng-required="true" ng-minlength="6" ng-maxlength="16" placeholder="Name" ng-model="username">
+        </label>
+        <label class="item item-input">
+          <input type="email" name="email" ng-required="true" placeholder="E-Mail" ng-model="email">
+        </label>
+        <button type="submit" value="add" ng-show="toShowButton" ng-disabled="!theForm.$valid" class="button button-full button-positive">
+            SUBMIT
+        </button>
+    </form>
+
+    <h2 ng-show="!toShowWheel">{{ saved }}</h2>
+
+    <div class="has-header item text-center" ng-show="toShowWheel" id="loading">
+        <h1 class="ion-loading-c"></h1>
+    </div>
+
+    <div>
+        <h5 ng-if="theForm.username.$error.minlength">Username too Short!</h5>
+        <h5 ng-if="theForm.username.$error.maxlength">Username too Long!</h5>
+        <h5 ng-if="theForm.username.$error.required">Username is Required!</h5>
+
+        <h5 ng-if="theForm.email.$error.email">Invalid email address!</h5>
+        <h5 ng-if="theForm.email.$error.required">Email is Required!</h5>
+    </div>
+
+
+  </ion-content>
+</ion-view>
